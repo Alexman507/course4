@@ -18,7 +18,7 @@ class MoviesView(Resource):
         return movie_service.get_all(**page_parser.parse_args())
 
 
-@api.route('/<int:genre_id>/')
+@api.route('/<int:movie_id>/')
 class MovieView(Resource):
     @api.response(404, 'Not Found')
     @api.marshal_with(movie, code=200, description='OK')
