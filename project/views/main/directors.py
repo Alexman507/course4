@@ -1,5 +1,4 @@
 from flask_restx import Namespace, Resource
-from flask import request
 from project.container import director_service
 from project.setup.api.models import director
 from project.setup.api.parsers import page_parser
@@ -16,11 +15,7 @@ class DirectorsView(Resource):
         Get all directors.
         """
 
-        status = request.args.get('status')
-        if status and status == 'new':
-
-
-        return director_service.get_all(filter=status, **page_parser.parse_args())
+        return director_service.get_all(**page_parser.parse_args())
 
 
 @api.route('/<int:director_id>/')
