@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import hmac
 
 from flask import current_app
 
@@ -16,4 +17,20 @@ def __generate_password_digest(password: str) -> bytes:
 def generate_password_hash(password: str) -> str:
     return base64.b64encode(__generate_password_digest(password)).decode('utf-8')
 
-# TODO: [security] Описать функцию compose_passwords(password_hash: Union[str, bytes], password: str)
+
+def compare_passwords(password_hash, other_password):
+    """
+
+    :param password_hash: - Password from DB
+    :param other_password: - Password from user input
+    :return:
+    """
+    return password_hash == generate_password_hash(other_password)
+
+
+def generate_token(email, password, password_hash):
+    ...
+
+
+def update_token(refresh_token):
+    ...

@@ -37,3 +37,26 @@ class MoviesDAO(BaseDAO[Movie]):
 
 class UsersDAO(BaseDAO[User]):
     __model__ = User
+
+    def create_user(self, email, password):
+        user = User(
+            email=email,
+            password=password
+        )
+
+        try:
+            self._db_session.add(
+                user
+            )
+            self._db_session.commit()
+            print('User created successfully')
+        except Exception as e:
+            self._db_session.rollback()
+            print(e)
+
+    def get_user_by_email(self, email):
+        return self._db_session.query(self.__model__).filter(self.__model__.email == email).one()
+
+
+
+

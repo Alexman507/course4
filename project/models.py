@@ -26,8 +26,8 @@ class Movie(models.Base):
     rating = Column(Float)
     genre_id = Column(ForeignKey(f"{Genre.__tablename__}.id"), unique=True, nullable=False)
     director_id = Column(ForeignKey(f"{Director.__tablename__}.id"), nullable=False)
-    genre = relationship("Genre")
-    director = relationship("Director")
+    genre = relationship('Genre')
+    director = relationship('Director')
 
 
 class User(models.Base):
