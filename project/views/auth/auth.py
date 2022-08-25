@@ -25,7 +25,6 @@ class RegisterView(Resource):
 
 @api.route('/login/')
 class LoginView(Resource):
-    @api.marshal_with(user, code=200, description='OK')
     def post(self):
         """
         Login user.
@@ -37,7 +36,6 @@ class LoginView(Resource):
         else:
             return "Something went wrong", 401
 
-    @api.marshal_with(user, code=200, description='OK')
     def put(self):
         """
         Update token.
