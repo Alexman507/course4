@@ -38,11 +38,11 @@ class UsersService:
             return self.get_user_by_email(data.get('email'))
 
     def update_user(self, data, token):
-        data = get_data_by_token(token)
-        if data:
-            self.dao.update_user(data=data, email=data.get('email'))
+        user = get_data_by_token(token)
+        if user:
+            self.dao.update_user(data=data, email=user.get('email'))
 
-            return self.get_user_by_email(data.get('email'))
+            return self.get_user_by_email(user.get('email'))
 
     def update_password(self, data, token):
         user = get_data_by_token(token)
@@ -54,4 +54,4 @@ class UsersService:
                 email=user.get('email')
             )
 
-            return self.get_user_by_email(data.get('email'))
+            return self.get_user_by_email(user.get('email'))

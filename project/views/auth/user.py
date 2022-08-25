@@ -24,8 +24,10 @@ class RegisterView(Resource):
 
         return user_service.update_user(data=data, token=token)
 
+
 @api.route('/password/')
 class LoginView(Resource):
+    @api.marshal_with(user, as_list=True, code=200, description='OK')
     def put(self):
         """
         Update token.
