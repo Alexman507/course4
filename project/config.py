@@ -58,5 +58,5 @@ class ConfigFactory:
         raise NotImplementedError
 
 
-os.environ['FLASK_ENV'] = "development"
+os.environ['FLASK_ENV'] = "development"  # Callable type of environment
 config = ConfigFactory.get_config()
