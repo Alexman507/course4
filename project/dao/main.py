@@ -42,7 +42,7 @@ class UsersDAO(BaseDAO[User]):
     def create_user(self, email, password):
         user = User(
             email=email,
-            password=generate_password_hash(password)
+            password=password
         )
 
         try:
@@ -58,6 +58,19 @@ class UsersDAO(BaseDAO[User]):
 
     def get_user_by_email(self, email):
         return self._db_session.query(self.__model__).filter(self.__model__.email == email).one()
+
+    def update_user(self, data, email):
+        try:
+            self._db_session.query(self.__model__).filter(self.__model__.email == email).update(data)
+            self._db_session.commit()
+            print('User updated successfully')
+        except Exception as e:
+            print('User update is failed')
+            print(e)
+            self._db_session.rollback()
+
+
+
 
 
 
