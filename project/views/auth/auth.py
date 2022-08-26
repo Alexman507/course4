@@ -32,7 +32,7 @@ class LoginView(Resource):
         data = request.json
 
         if data.get('email') and data.get('password'):
-            return user_service.check(email=data.get('email', password=data.get('password'))), 200
+            return user_service.check(email=data.get('email'), password=data.get('password')), 200
         else:
             return "Something went wrong", 401
 
@@ -43,7 +43,7 @@ class LoginView(Resource):
         data = request.json
 
         if data.get('access_token') and data.get('refresh_token'):
-            return user_service.update_token(access_token=data.get('access_token',
-                                                                   refresh_token=data.get('refresh_token'))), 200
+            return user_service.update_token(access_token=data.get('access_token'),
+                                                                   refresh_token=data.get('refresh_token')), 200
         else:
             return "Something went wrong", 401

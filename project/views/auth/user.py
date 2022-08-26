@@ -14,12 +14,12 @@ class RegisterView(Resource):
         """
         Get user .
         """
-        token = request.headers['Authorization'].split('Bearer')[-1]
+        token = request.headers['Authorization'].split('Bearer ')[-1]
         return user_service.get_user_by_token(token)
 
     @api.marshal_with(user, as_list=True, code=200, description='OK')
     def patch(self):
-        token = request.headers['Authorization'].split('Bearer')[-1]
+        token = request.headers['Authorization'].split('Bearer ')[-1]
         data = request.json
 
         return user_service.update_user(data=data, token=token)
@@ -33,6 +33,6 @@ class LoginView(Resource):
         Update token.
         """
         data = request.json
-        token = request.headers['Authorization'].split('Bearer')[-1]
+        token = request.headers["Authorization"].split("Bearer ")[-1]
 
         return user_service.update_password(data=data, token=token)

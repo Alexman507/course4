@@ -20,7 +20,7 @@ class BaseConfig:
     PWD_HASH_SALT = base64.b64decode("salt")
     PWD_HASH_ITERATIONS = 100_000
 
-    ALGORITHM = 'SH256'
+    ALGORITHM = 'HS256'
 
     RESTX_JSON = {
         'ensure_ascii': False,
@@ -45,7 +45,7 @@ class ProductionConfig(BaseConfig):
 
 
 class ConfigFactory:
-    flask_env = os.getenv('FLASK_ENV')
+    flask_env = os.environ['FLASK_ENV'] = "development"
 
     @classmethod
     def get_config(cls) -> Type[BaseConfig]:
@@ -57,6 +57,6 @@ class ConfigFactory:
             return TestingConfig
         raise NotImplementedError
 
-
-os.environ['FLASK_ENV'] = "development"  # Callable type of environment
+#os.getenv('FLASK_ENV')
+#os.environ['FLASK_ENV'] = "development"  # Callable type of environment
 config = ConfigFactory.get_config()
